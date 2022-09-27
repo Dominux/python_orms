@@ -2,8 +2,8 @@ import pytest
 from httpx import AsyncClient
 from fastapi import status
 
-from tortoise_orm.common.test.fixtures import async_client as client
-from tortoise_orm.models import User, UserSchema
+from app.common.test.fixtures import async_client as client
+from app.models import User, UserSchema
 
 
 pytestmark = pytest.mark.asyncio

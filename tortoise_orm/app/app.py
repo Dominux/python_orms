@@ -6,9 +6,9 @@ from pydantic import BaseModel
 from tortoise.contrib.fastapi import register_tortoise
 from tortoise.exceptions import DoesNotExist
 
-# from models import User, UserSchema, InUserSchema
+from app import config
+from app.models import User, UserSchema, InUserSchema
 
-from tortoise_orm.models import User, UserSchema, InUserSchema
 
 app = FastAPI(title="Tortoise ORM FastAPI example")
 
@@ -59,8 +59,8 @@ app.include_router(users_router, prefix="/users", tags=["Users"])
 
 register_tortoise(
     app,
-    db_url="sqlite://:memory:",
-    modules={"models": ["models"]},
+    db_url=config.DB_URI,
+    modules={"models": ["app.models"]},
     generate_schemas=True,
     add_exception_handlers=True,
 )

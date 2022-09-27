@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Dominux <kir.gimranov@gmail.com>"]
 readme = "README.md"
-packages = [{include = "tortoise_orm"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.8"
