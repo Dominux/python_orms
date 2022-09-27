@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from tortoise.contrib.fastapi import register_tortoise
 from tortoise.exceptions import DoesNotExist
 
-from models import User, UserSchema, InUserSchema
+from tortoise_orm.models import User, UserSchema, InUserSchema
 
 app = FastAPI(title="Tortoise ORM FastAPI example")
 
@@ -20,6 +20,7 @@ users_router = APIRouter()
 
 @users_router.post("", response_model=UserSchema, status_code=status.HTTP_201_CREATED)
 async def create_user(user: InUserSchema):
+    breakpoint()
     user_obj = await User.create(**user.dict(exclude_unset=True))
     return await UserSchema.from_tortoise_orm(user_obj)
 
