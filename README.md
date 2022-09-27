@@ -9,5 +9,5 @@ Required: [docker](https://www.docker.com/), [docker-compose](https://docs.docke
 #### Tortoise ORM:
 
 ```bash
-$ make test_tortoise_orm
+make test_tortoise_orm
 ```
