@@ -7,8 +7,6 @@ from tortoise import Tortoise
 from app.app import app
 from app import config
 
-DB_URL = "sqlite://:memory:"
-
 
 async def init_db(db_url, create_db: bool = False, schemas: bool = False) -> None:
     """Initial database connection"""
@@ -24,7 +22,7 @@ async def init_db(db_url, create_db: bool = False, schemas: bool = False) -> Non
         print("Success to generate schemas")
 
 
-async def init(db_url: str = DB_URL):
+async def init(db_url=config.DB_URI):
     await init_db(db_url, True, True)
 
 
