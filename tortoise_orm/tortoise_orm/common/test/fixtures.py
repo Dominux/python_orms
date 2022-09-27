@@ -12,7 +12,7 @@ DB_URL = "sqlite://:memory:"
 async def init_db(db_url, create_db: bool = False, schemas: bool = False) -> None:
     """Initial database connection"""
     await Tortoise.init(
-        db_url=db_url, modules={"models": ["models"]}, _create_db=create_db
+        db_url=db_url, modules={"models": ["tortoise_orm.models"]}, _create_db=create_db
     )
     if create_db:
         print(f"Database created! {db_url = }")
@@ -27,12 +27,7 @@ async def init(db_url: str = DB_URL):
 
 @pytest.fixture()
 async def async_client() -> AsyncGenerator:
+    await init()
     async with AsyncClient(app=app, base_url="http://test") as ac:
         yield ac
-
-
-@pytest.fixture(autouse=True)
-async def initialize_tests():
-    await init()
-    yield
     await Tortoise._drop_databases()
