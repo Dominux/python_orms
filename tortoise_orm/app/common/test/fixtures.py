@@ -8,10 +8,10 @@ from app.app import app
 from app import config
 
 
-async def init_db(db_url, create_db: bool = False, schemas: bool = False) -> None:
+async def init_db(db_url: str, create_db: bool = False, schemas: bool = False) -> None:
     """Initial database connection"""
     await Tortoise.init(
-        db_url=config.DB_URI,
+        db_url=db_url,
         modules={"models": ["app.models"]},
         _create_db=create_db,
     )
